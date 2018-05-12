@@ -1,8 +1,9 @@
 #OS junk files
-[Tt]humbs.db
 *.DS_Store
 
 # Node packages
 /node_modules/*
-/dist/*
-/example/controller-example.js
+
+# Project
+/example/*
+webpack.config.js

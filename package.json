@@ -1,13 +1,12 @@
 {
   "name": "howler-sound-controller",
-  "version": "0.1.0",
-  "description": "Sound controller based on Howler.js",
+  "version": "1.0.0",
+  "description": "Simple sound controller based on Howler.js",
   "main": "dist/index.js",
   "typings": "dist/index",
   "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "postinstall": "tsc"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
