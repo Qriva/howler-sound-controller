@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Howler Sound Controller Example</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        .wrapper{
+            width: 600px;
+            margin: 50px auto;
+        }
+        progress{
+            width: 100%;
+        }
+        button{
+            width: 19.4%;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <progress id="progress" value="0" max="100"></progress>
+        <script src="controller-example.js"></script>
+        <div>
+            <button onclick="window.HSC.play('one')">PLAY SOUND 1</button>
+            <button onclick="window.HSC.play('two')">PLAY SOUND 2</button>
+            <button onclick="window.HSC.play('three')">PLAY SOUND 3</button>
+            <button onclick="window.HSC.play('bg1')">PLAY SOUND 4</button>
+            <button onclick="window.HSC.play('m1')">PLAY SOUND 5</button>
+        </div>
+        <div>
+            <button onclick="window.HSC.stop('one')">STOP SOUND 1</button>
+            <button onclick="window.HSC.stop('two')">STOP SOUND 2</button>
+            <button onclick="window.HSC.stop('three')">STOP SOUND 3</button>
+            <button onclick="window.HSC.stop('bg1')">STOP SOUND 4</button>
+            <button onclick="window.HSC.stop('m1')">STOP SOUND 5</button>
+        </div>
+        
+    </div>
+</body>
+</html>
