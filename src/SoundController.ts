@@ -45,6 +45,21 @@ export class SoundController{
         }
     }
 
+    stop(name: string, id: number = null): SoundController{
+        if(name in this.sounds){
+            // if name is the same as sprite id then use it or else no param
+            if(id === null){
+                this.sounds[name].howl.stop();
+                return this;
+            }else{
+                this.sounds[name].howl.stop(id);
+                return this;
+            }
+        }else{
+            console.log('Sound "' + name + '" does not exists.');
+        }
+    }
+
     get(name: string): Sound{
         if(name in this.sounds){
             return this.sounds[name];

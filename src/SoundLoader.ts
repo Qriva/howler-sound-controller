@@ -159,4 +159,13 @@ export class SoundLoader extends EventEmitter{
         this.loadingSounds = [];
     }
 
+    clearQueue(){
+        // Skip if currently loading
+        if(this.loading){
+            console.log('Cannot clear queue now');
+            return;
+        }
+        this.queue = [];
+    }
+
 }
