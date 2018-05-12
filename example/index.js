@@ -16,11 +16,12 @@ loader.add('m1', {
 })
 .add('s2', {
     src: ['sound2.mp3'],
-    volume: 0.8
-},{
-    one: [0, 2000],
-    two: [2000, 2000],
-    three: [4000, 2000]
+    volume: 0.8,
+    sprite: {
+        one: [0, 2000],
+        two: [2000, 2000],
+        three: [4000, 2000]
+    }
 })
 
 // .add('m2', {
