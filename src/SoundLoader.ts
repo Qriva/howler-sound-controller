@@ -11,12 +11,12 @@ export interface HowlOptions{
     loop?: boolean;
     rate?: number;
     format?: Array<string>;
+    sprite?: HowlSpriteObject;
 }
 
 export interface QueueResource{
     name: string;
     howlOptions: HowlOptions;
-    sprite: HowlSpriteObject | null;
 }
 
 export interface Sound{
@@ -69,8 +69,7 @@ export class SoundLoader extends EventEmitter{
         // Add resource to queue
         this.queue.push({
             name: name,
-            howlOptions: howlOptions,
-            sprite: sprite
+            howlOptions: howlOptions
         });
         return this;
     }
@@ -87,15 +86,12 @@ export class SoundLoader extends EventEmitter{
         for (let i = 0; i < this.queue.length; i++) {
             const singleResource = this.queue[i];
 
-            let spriteOpt = {};
-            if(singleResource.sprite !== null){
-                spriteOpt = singleResource.sprite;
+            let spriteOpt: HowlSpriteObject = {};
+            if(singleResource.howlOptions.sprite){
+                spriteOpt = singleResource.howlOptions.sprite;
             }
-            // Add sprites key to option object if exists
-            let options = (<any>Object).assign({}, singleResource.howlOptions, {
-                sprite: spriteOpt 
-            });
-            
+
+            let options = (<any>Object).assign({}, singleResource.howlOptions);
             // Create Howl instance
             let sound = new Howl(options);
 
