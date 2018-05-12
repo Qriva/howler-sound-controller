@@ -1,11 +1,11 @@
 # Howler.js sound controller
-Very simple [howler.js](https://howlerjs.com)  based sound manager games.
+Very simple [howler.js](https://howlerjs.com)  based sound manager for games (and not only).
 
 
 ### What does it do
 * Controller makes it easier to manage sounds
 * Loader helps to load all sounds before use 
-* Allows to use spatial sound
+* Allows to use spatial sound too
 * Organise all sounds and sprites
 * Plus all standard features of Howler.js
 
@@ -17,14 +17,14 @@ Very simple [howler.js](https://howlerjs.com)  based sound manager games.
 ### Install
 
 
-* Install via [npm](https://www.npmjs.com/): `npm install ---`
+* Install via [npm](https://www.npmjs.com/): `npm install howler-sound-controller`
 * or clone the repo: `git clone https://github.com/Qriva/howler-sound-controller.git`
 
 ## Examples
 
 #### Simple example
 ```javascript
-import * as HSC from "---";
+import * as HSC from "howler-sound-controller";
 
 var controller = HSC.HowlerSoundController;
 // Get load manager via method
@@ -96,7 +96,7 @@ controller.stop('sound1');
 controller.get('sound1');
 ```
 # Sound object
-```javascript
+```typescript
 interface Sound {
     name: string;
     howl: Howl;
