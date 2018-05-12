@@ -1,0 +1,31 @@
+{
+  "name": "howler-sound-controller",
+  "version": "0.1.0",
+  "description": "Sound controller based on Howler.js",
+  "main": "dist/index.js",
+  "typings": "dist/index",
+  "private": true,
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Qriva/howler-sound-controller.git"
+  },
+  "keywords": [
+    "howler"
+  ],
+  "author": "Maciej Pawlisz",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Qriva/howler-sound-controller/issues"
+  },
+  "homepage": "https://github.com/Qriva/howler-sound-controller#readme",
+  "dependencies": {
+    "eventemitter3": "^3.1.0",
+    "howler": "^2.0.12"
+  },
+  "devDependencies": {
+    "@types/node": "^8.0.0"
+  }
+}
