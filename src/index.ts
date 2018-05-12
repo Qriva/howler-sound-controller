@@ -1,14 +1,17 @@
 import { SoundController } from "./SoundController";
 
+
 const controller = new SoundController();
-export { controller };
+export { controller as HowlerSoundController };
+export * from './SoundController';
+export * from './SoundLoader';
 
-declare global {
-    namespace NodeJS {
-        interface Global {
-            HowlerSoundController: SoundController
-        }
-    }
-}
+// declare global {
+//     namespace NodeJS {
+//         interface Global {
+//             HowlerSoundController: SoundController
+//         }
+//     }
+// }
 
-global.HowlerSoundController = controller;
+// global.HowlerSoundController = controller;

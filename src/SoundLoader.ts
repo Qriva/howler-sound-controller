@@ -48,10 +48,10 @@ export interface ProgressEventPayload{
  */
 export class SoundLoader extends EventEmitter{
 
-    loading: boolean;
-    queue: Array<QueueResource>;
-    loadedSounds: number;
-    loadingSounds: Array<Sound>;
+    private loading: boolean;
+    private queue: Array<QueueResource>;
+    private loadedSounds: number;
+    private loadingSounds: Array<Sound>;
 
     constructor() {
         super();
@@ -72,6 +72,7 @@ export class SoundLoader extends EventEmitter{
             howlOptions: howlOptions,
             sprite: sprite
         });
+        return this;
     }
 
     load(){
@@ -91,7 +92,9 @@ export class SoundLoader extends EventEmitter{
                 spriteOpt = singleResource.sprite;
             }
             // Add sprites key to option object if exists
-            let options = (<any>Object).assign({}, singleResource.howlOptions, spriteOpt);
+            let options = (<any>Object).assign({}, singleResource.howlOptions, {
+                sprite: spriteOpt 
+            });
             
             // Create Howl instance
             let sound = new Howl(options);
@@ -127,8 +130,8 @@ export class SoundLoader extends EventEmitter{
                 console.warn('Unable to load sound [id]: ' + id + '. Loading canceled.');
                 this.reset();
             });
-        }        
-        
+        } 
+        return this;
     }
 
     private loadedResource(){
