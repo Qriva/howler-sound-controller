@@ -46,7 +46,7 @@ export class SoundController{
         for (let i = 0; i < sounds.length; i++) {
             const sound = sounds[i];
             if(sound.name in this.sounds){
-                console.warn('Sound with key "' + sound.name + '" already exists.');
+                console.warn('sound-controller: Sound with key "' + sound.name + '" already exists.');
             }else{
                 this.sounds[sound.name] = sound;
             }
@@ -71,7 +71,7 @@ export class SoundController{
                 return this.sounds[name].howl.play();
             }
         }else{
-            console.log('Sound "' + name + '" does not exists.');
+            console.log('sound-controller: Sound "' + name + '" does not exists.');
         }
     }
 
@@ -98,7 +98,7 @@ export class SoundController{
             }, soundId);
             return soundId;
         }else{
-            console.log('Sound "' + name + '" does not exists.');
+            console.log('sound-controller: Sound "' + name + '" does not exists.');
         }
     }
 
@@ -113,7 +113,7 @@ export class SoundController{
                 return this;
             }
         }else{
-            console.log('Sound "' + name + '" does not exists.');
+            console.log('sound-controller: Sound "' + name + '" does not exists.');
         }
     }
 
@@ -121,7 +121,7 @@ export class SoundController{
         if(name in this.sounds){
             return this.sounds[name];
         }else{
-            console.log('Sound "' + name + '" does not exists.');
+            console.log('sound-controller: Sound "' + name + '" does not exists.');
         }
     }
 

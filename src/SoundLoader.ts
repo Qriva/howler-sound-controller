@@ -118,12 +118,13 @@ export class SoundLoader extends EventEmitter{
                 this.loadedResource();
             });
             sound.once('loaderror', (id, error) => {
+                this.emit('loaderror');
                 console.warn(error);
                 for (let i = 0; i < this.loadingSounds.length; i++) {
                     const s = this.loadingSounds[i];
                     s.howl.off('load').off('loaderror').unload();
                 }
-                console.warn('Unable to load sound [id]: ' + id + '. Loading canceled.');
+                console.warn('sound-loader: Unable to load sound [id]: ' + id + '. Loading canceled.');
                 this.reset();
             });
         } 
@@ -132,7 +133,7 @@ export class SoundLoader extends EventEmitter{
 
     private loadedResource(){
         if(!this.loading){
-            console.warn('Attempted to load resource without calling load() method. Can be caused in load errors');
+            console.warn('sound-loader: Attempted to load resource without calling load() method. Can be caused in load errors');
             return;
         }
         this.loadedSounds++;
@@ -161,7 +162,7 @@ export class SoundLoader extends EventEmitter{
     clearQueue(){
         // Skip if currently loading
         if(this.loading){
-            console.log('Cannot clear queue now');
+            console.log('sound-loader: Cannot clear queue now');
             return;
         }
         this.queue = [];
