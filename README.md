@@ -24,9 +24,9 @@ Very simple [howler.js](https://howlerjs.com)  based sound manager for games (an
 
 #### Simple example
 ```javascript
-import * as HSC from "howler-sound-controller";
+import { HowlerSoundController } from 'howler-sound-controller';
 
-var controller = HSC.HowlerSoundController;
+var controller = HowlerSoundController;
 // Get load manager via method
 var loader = controller.getLoader();
 
@@ -151,7 +151,8 @@ Fires when single sound (howler instance) is loaded.
 ##### `Event data`
 * sounds `array` - array of loaded Sounds added to controller library (Sound object described above). There is no need to use Controller to play sounds, you can just use Loader to load all files and use Howl instances separately.
 
-#### // xxx: missing error event
+#### loaderror
+Fires if any of provided sounds cannot be loaded.
 
 
 # Controller
