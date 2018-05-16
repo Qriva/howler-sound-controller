@@ -1,6 +1,6 @@
 {
   "name": "howler-sound-controller",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "Simple sound controller based on Howler.js",
   "main": "dist/index.js",
   "typings": "dist/index",
