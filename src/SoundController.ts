@@ -28,9 +28,17 @@ export class SoundController{
     private loader: SoundLoader;
     private sounds: SoundsIndex;
 
+    private backgroundName: string | null;
+    private backgroundId: number | null;
+    private backgroundVolume: number;
+
     constructor() {
         this.loader = new SoundLoader();
         this.sounds = {};
+
+        this.backgroundName = null;
+        this.backgroundId = null;
+        this.backgroundVolume = 1;
 
         // Listen for load event
         this.loader.on('loaded', (event: LoadedEventPayload) => {
@@ -60,6 +68,74 @@ export class SoundController{
             return;
         }
         Howler.orientation(orientation.x, orientation.y, orientation.z, orientationUp.x, orientationUp.y, orientationUp.z);
+    }
+
+    getMasterVolume(): number{
+        return Howler.volume();
+    }
+
+    setMasterVolume(val: number){
+        Howler.volume(val);
+    }
+
+    getBackgroundVolume(): number{
+        return this.backgroundVolume;
+    }
+
+    setBackgroundVolume(val: number){
+        this.backgroundVolume = val;
+        this.sounds[this.backgroundName].howl.volume(val, this.backgroundId);
+    }
+
+    playBackground(name: string | null, fadeOutTime: number = 0, fadeInTime: number = 0,  smooth: boolean = false){
+        // Skip if currently playing this track
+        if(name === this.backgroundName){
+            return;
+        }
+        // Check if background is playing already
+        let playing = false;
+        if(this.backgroundName !== null && this.backgroundId !== null){
+            playing = true;
+        }
+        // Fadeout current track
+        if(playing){
+            let sound = this.sounds[this.backgroundName].howl;
+            let soundId =  this.backgroundId;
+            // Create new sound then stop it if name is not null
+            let id = null;
+            if(smooth === false && name !== null){
+                id = this.play(name);
+                this.sounds[name].howl.pause(id);
+                this.sounds[name].howl.loop(true, id);
+                this.backgroundName = name;
+                this.backgroundId = id;
+            }
+            // Start fadeout current trck and stop sound in face event
+            sound.fade(this.backgroundVolume, 0, fadeOutTime, soundId);
+            sound.once('fade', () => {
+                sound.stop(soundId);
+                // If smoth was disabled then play next sound after fadeout
+                if(id !== null){
+                    this.sounds[name].howl.play(id);
+                    this.sounds[name].howl.fade(0, this.backgroundVolume, fadeInTime, id);
+                }
+            }, soundId);
+        }
+        if( (smooth === true || !playing ) && name !== null){
+            let id = this.play(name);
+            this.sounds[name].howl.loop(true, id);
+            this.backgroundName = name;
+            this.backgroundId = id;
+            this.sounds[name].howl.once('play', () => {
+                this.sounds[name].howl.fade(0, this.backgroundVolume, fadeInTime, id);
+            }, id);
+        }
+
+        if(name === null){
+            this.backgroundId = null;
+            this.backgroundName = null;
+        }
+
     }
 
     play(name: string): number{
@@ -107,6 +183,8 @@ export class SoundController{
             // if name is the same as sprite id then use it or else no param
             if(id === null){
                 this.sounds[name].howl.stop();
+                this.backgroundId = null;
+                this.backgroundName = null;
                 return this;
             }else{
                 this.sounds[name].howl.stop(id);
