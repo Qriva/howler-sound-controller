@@ -60,11 +60,12 @@ loader.clearQueue();
 // Controller creates spirtes if provided
 loader.add('spriteSound', {
     src: ['music1.mp3'],
-    volume: 0.7
-},{
-    explosion: [0, 2000],
-    laser: [2000, 2000]
-});
+    volume: 0.7,
+    sprite: {
+        explosion: [0, 2000],
+        laser: [2000, 2000]
+    }
+);
 
 // Start loading files from queue
 loader.load();
@@ -91,6 +92,21 @@ var id = controller.play('sound1');
 controller.stop('sound1', id);
 // Or stop all sounds in group
 controller.stop('sound1');
+
+// Play looped background music
+controller.playBackground('sound1');
+
+// Change background music with fade effect
+controller.playBackground('sound2', 0, 3000, true);
+
+// Fade out background music (off)
+controller.playBackground(null, 2000);
+
+// Set master volume (can be done via Howler too)
+controller.setMasterVolume(0.6);
+
+// Set background music volume
+controller.setBackgroundVolume(0.8);
 
 // Get Sound object
 controller.get('sound1');
@@ -160,10 +176,29 @@ Fires if any of provided sounds cannot be loaded.
 ## Methods
 
 #### play(name): `number`
-Play sound registered for given name. Returns the sound id to be used with other methods.
+Plays sound registered for given name. Returns the sound id to be used with other methods.
 
 #### stop(name, [id]): `SoundController`
-Stops playback of all sounds for given name. If id is provided only sound by given id is stopped.
+Stops playback of all sounds for given name. If id is provided only sound by given id is stopped. Calling `stop` without id stops  background music too.
+
+#### playBackground(name, [fadeOutTime], [fadeInTime], [transition]): `number`
+Plays looped backgorund music registered for given name with fade effect between sonuds.
+##### name `string | null` - name of registered sound. If null passed then no backgorund music will be played after fadeout.
+##### fadeOutTime, fadeInTime `number` `[0]` - fading time of prvious and new track.
+##### transition `bollean` `[false]` - if true is passed, fadein will start at the same time as fadeout. If false, fadein will be queued to play after fadeout of previous track.
+
+
+#### getMasterVolume(): `number`
+Returns main volume.
+
+#### setMasterVolume(value):
+Set main volume.
+
+#### getBackgroundVolume(): `number`
+Returns volume background music.
+
+#### setBackgroundVolume(value):
+Set background music volume.
 
 #### get(name): `Sound`
 Returns Sound object for given name (Described above).
