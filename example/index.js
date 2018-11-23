@@ -1,8 +1,7 @@
-import * as HSC from "../dist/index";
+import { HowlerSoundController } from "../src/index.ts";
 
-// console.log(HSCVar.HowlerSoundController);
-let controller = HSC.HowlerSoundController;
-window.HSC = HSC.HowlerSoundController;
+let controller = HowlerSoundController;
+window.HSC = HowlerSoundController;
 
 let loader = controller.getLoader();
 
@@ -22,21 +21,7 @@ loader.add('m1', {
         two: [2000, 2000],
         three: [4000, 2000]
     }
-})
-
-// .add('m2', {
-//     src: ['music2.mp3'],
-//     volume: 0.8
-// })
-// .add('m3', {
-//     src: ['music3.mp3'],
-//     volume: 0.8
-// })
-// .add('m4', {
-//     src: ['music4.mp3'],
-//     volume: 0.8
-// });
-
+});
 
 
 loader.once('loaded', function(){

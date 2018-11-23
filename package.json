@@ -12,7 +12,9 @@
     "url": "git+https://github.com/Qriva/howler-sound-controller.git"
   },
   "keywords": [
-    "howler", "sound", "audio"
+    "howler",
+    "sound",
+    "audio"
   ],
   "author": "Maciej Pawlisz",
   "license": "MIT",
@@ -26,7 +28,7 @@
   },
   "devDependencies": {
     "@types/node": "^8.0.0",
-    "ts-loader": "^3.5.0",
+    "ts-loader": "^4.1.0",
     "typescript": "^2.7.2",
     "webpack": "^4.8.2",
     "webpack-cli": "^2.1.3"
